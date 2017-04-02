@@ -108,51 +108,7 @@ class Club
     {
         return $this->deleted;
     }
-    /**
-     * @var \Doctrine\Common\Collections\Collection
-     */
-    private $features;
 
-    /**
-     * Constructor
-     */
-    public function __construct()
-    {
-        $this->features = new \Doctrine\Common\Collections\ArrayCollection();
-    }
-
-    /**
-     * Add features
-     *
-     * @param \AppBundle\Entity\Player $features
-     * @return Club
-     */
-    public function addFeature(\AppBundle\Entity\Player $features)
-    {
-        $this->features[] = $features;
-
-        return $this;
-    }
-
-    /**
-     * Remove features
-     *
-     * @param \AppBundle\Entity\Player $features
-     */
-    public function removeFeature(\AppBundle\Entity\Player $features)
-    {
-        $this->features->removeElement($features);
-    }
-
-    /**
-     * Get features
-     *
-     * @return \Doctrine\Common\Collections\Collection 
-     */
-    public function getFeatures()
-    {
-        return $this->features;
-    }
     /**
      * @var \Doctrine\Common\Collections\Collection
      */
@@ -190,5 +146,13 @@ class Club
     public function getPlayers()
     {
         return $this->players;
+    }
+
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->players = new \Doctrine\Common\Collections\ArrayCollection();
     }
 }
