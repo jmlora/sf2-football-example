@@ -35,7 +35,7 @@ class ClubController extends Controller
     /**
      * Creates a new club entity.
      *
-     * @Route("/new", name="club_new")
+     * @Route("/nuevo", name="club_new")
      * @Method({"GET", "POST"})
      */
     public function newAction(Request $request)
@@ -75,7 +75,7 @@ class ClubController extends Controller
     /**
      * Displays a form to edit an existing club entity.
      *
-     * @Route("/{id}/edit", name="club_edit")
+     * @Route("/{id}/editar", name="club_edit")
      * @Method({"GET", "POST"})
      */
     public function editAction(Request $request, Club $club)
@@ -85,7 +85,7 @@ class ClubController extends Controller
         $editForm->handleRequest($request);
 
         if ($editForm->isSubmitted() && $editForm->isValid()) {
-            $this->getDoctrine()->getManager()->flush();
+            $this->get('club.manager')->create($club);
 
             return $this->redirectToRoute('club_edit', array('id' => $club->getId()));
         }
