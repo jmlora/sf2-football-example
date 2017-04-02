@@ -21,20 +21,19 @@
             {{ form_row(edit_form.players) }}
         </div>
         <div class="form-group">
-            <input type="submit" value="Crear" class="btn btn-sm btn-success"/>
+            <button type="submit" class="btn btn-sm btn-success"><i class="fa fa-save"></i> Editar</button>
         </div>
     {{ form_end(edit_form) }}
 
-    <ul>
-        <li>
-            <a href="{{ path('club_index') }}">Back to the list</a>
-        </li>
-        <li>
+    <div class="row">
+        <div class="col-xs-12">
             {{ form_start(delete_form) }}
-                <input type="submit" value="Delete">
+                <a href="{{ path('club_index') }}" class="btn btn-sm btn-primary"><i class="fa fa-reply"></i> Volver al listado</a>
+                <input type="submit" value="Eliminar" class="btn btn-sm btn-danger">
             {{ form_end(delete_form) }}
-        </li>
-    </ul>
+        </div>
+    </div>
+
 {% endblock %}
 
 {% block javascripts %}

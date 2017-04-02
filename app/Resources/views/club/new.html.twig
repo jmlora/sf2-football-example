@@ -40,10 +40,16 @@
         <script src="{{ asset_url }}"></script>
     {% endjavascripts %}
 
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.10/jquery.mask.min.js" integrity="sha256-X44h8GHeGHTkrwY/CVo4kYfEBYPJAzlG5Aaou4Jco1g=" crossorigin="anonymous"></script>
+
     <script type="text/javascript">
         $(document).ready(function(){
             $('.player-collection').collection({
                 'add': '<a href="#" class="btn btn-sm btn-default">Añadir jugador</a>'
+            });
+            $("#appbundle_club_phone").mask("000-00-00-00");
+            $('form[name="appbundle_club"').on('submit', function(){
+                $("#appbundle_club_phone").val($("#appbundle_club_phone").cleanVal());
             });
         });
     </script>
