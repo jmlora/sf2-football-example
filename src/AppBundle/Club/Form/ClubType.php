@@ -30,7 +30,7 @@ class ClubType extends AbstractType
                     )
                 ))
             ->add('players', CollectionType::class, array(
-                'entry_type' => new PlayerType(),
+                'entry_type' => PlayerType::class,
                 'allow_add' => true,
                 'allow_delete' => true,
                 'prototype' => true,
