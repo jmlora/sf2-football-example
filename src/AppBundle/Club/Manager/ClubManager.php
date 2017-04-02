@@ -4,6 +4,7 @@ namespace AppBundle\Club\Manager;
 
 use AppBundle\Entity\Club;
 use Doctrine\ORM\EntityManagerInterface;
+use Doctrine\Common\Collections\ArrayCollection;
 
 class ClubManager
 {
@@ -43,14 +44,20 @@ class ClubManager
         return true;
     }
 
-        /**
-     * Crea en BBDD un nuevo club
-     * @param  Club   $club Club que se va a persistir
+    /**
+     * Modifica la información de un club
+     * @param  Club   $club Club que se modifica
      * @return boolean
      */
-    public function create(Club $club)
-    {
-        $club->setDeleted(false);
+    public function edit(Club $club, ArrayCollection $originalPlayers)
+    { 
+        foreach ($originalPlayers as $player) {
+            if (false === $club->getPlayers()->contains($player)) {
+                $player->setClub(null);
+                $club->removePlayer($player);
+                $this->emr->remove($player);
+            }
+        }
 
         if ($club->getPlayers() != null) {
             foreach ($club->getPlayers() as $player) {
@@ -58,7 +65,6 @@ class ClubManager
             }
         }
 
-        $this->emr->persist($club);
         $this->emr->flush();
 
         return true;

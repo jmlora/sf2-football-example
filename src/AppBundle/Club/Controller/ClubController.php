@@ -6,7 +6,9 @@ use AppBundle\Entity\Club;
 use AppBundle\Entity\Player;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;use Symfony\Component\HttpFoundation\Request;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
+use Symfony\Component\HttpFoundation\Request;
+use Doctrine\Common\Collections\ArrayCollection;
 
 /**
  * Club controller.
@@ -80,19 +82,25 @@ class ClubController extends Controller
      */
     public function editAction(Request $request, Club $club)
     {
+        $originalPlayers = new ArrayCollection();
+
+        foreach ($club->getPlayers() as $player) {
+            $originalPlayers->add($player);
+        }
+
         $deleteForm = $this->createDeleteForm($club);
         $editForm = $this->createForm('AppBundle\Club\Form\ClubType', $club);
         $editForm->handleRequest($request);
 
         if ($editForm->isSubmitted() && $editForm->isValid()) {
-            $this->get('club.manager')->create($club);
+            $this->get('club.manager')->edit($club, $originalPlayers);
 
             return $this->redirectToRoute('club_edit', array('id' => $club->getId()));
         }
 
         return $this->render('club/edit.html.twig', array(
             'club' => $club,
-            'edit_form' => $editForm->createView(),
+            'form' => $editForm->createView(),
             'delete_form' => $deleteForm->createView(),
         ));
     }
