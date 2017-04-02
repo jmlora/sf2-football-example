@@ -9,13 +9,12 @@
                 <th>Id</th>
                 <th>Nombre</th>
                 <th>Club</th>
-                <th>Acciones</th>
             </tr>
         </thead>
         <tbody>
         {% for player in players %}
             <tr>
-                <td><a href="{{ path('player_show', { 'id': player.id }) }}">{{ player.id }}</a></td>
+                <td>{{ player.id }}</td>
                 <td>{{ player.name }}</td>
                 <td>{{ player.club.name }}</td>
         {% endfor %}
