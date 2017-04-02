@@ -25,9 +25,7 @@ class ClubController extends Controller
      */
     public function indexAction()
     {
-        $em = $this->getDoctrine()->getManager();
-
-        $clubs = $em->getRepository('AppBundle:Club')->findByDeleted(false);
+        $clubs = $this->get('club.manager')->findAll();
 
         return $this->render('club/index.html.twig', array(
             'clubs' => $clubs,

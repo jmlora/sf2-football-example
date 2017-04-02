@@ -24,6 +24,15 @@ class ClubManager
     }
 
     /**
+     * Devuelve todos los clubs que no están marcados como eliminados
+     * @return array
+     */
+    public function findAll()
+    {
+        return $this->emr->getRepository('AppBundle:Club')->findByDeleted(false);
+    }
+
+    /**
      * Crea en BBDD un nuevo club
      * @param  Club   $club Club que se va a persistir
      * @return boolean
