@@ -1,0 +1,27 @@
+AppBundle\Entity\Club:
+    type: entity
+    table: null
+    repositoryClass: AppBundle\Club\Repository\ClubRepository
+    id:
+        id:
+            type: integer
+            id: true
+            generator:
+                strategy: AUTO
+    fields:
+        name:
+            type: string
+            length: 255
+        phone:
+            type: string
+            length: '9'
+        deleted:
+            type: boolean
+    oneToMany:
+        players:
+            targetEntity: Player
+            mappedBy: club
+            cascade:
+                - persist
+                - remove
+    lifecycleCallbacks: {  }

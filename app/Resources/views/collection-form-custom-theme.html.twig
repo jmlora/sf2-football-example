@@ -1,0 +1,23 @@
+{% block appbundle_player_label %}{% endblock %}
+{% block appbundle_player_errors %}{% endblock %}
+
+{% block appbundle_player_widget %}
+    <div class="row player-collection">
+        <div class="col-md-7">
+                {{ form_label(form.name) }}:
+                {{ form_widget(form.name) }}
+        </div>
+        <div class="col-md-2">
+            <a href="#" class="collection-up btn btn-sm btn-default">Subir</a>
+            <a href="#" class="collection-down btn btn-sm btn-default">Bajar</a>
+        </div>
+        <div class="col-md-2">
+            <a href="#" class="collection-remove btn btn-sm btn-default">Eliminar</a>
+            <a href="#" class="collection-add btn btn-sm btn-default">Añadir</a>
+        </div>
+        <div class="col-md-1">
+            <a href="#" class="collection-duplicate btn btn-sm btn-default">Duplicar</a>
+        </div>
+    </div>
+
+{% endblock %}

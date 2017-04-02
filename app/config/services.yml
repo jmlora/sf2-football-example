@@ -1,0 +1,4 @@
+services:
+    club.manager:
+        class: AppBundle\Club\Manager\ClubManager
+        arguments: ['@doctrine.orm.entity_manager']

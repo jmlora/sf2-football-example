@@ -1,0 +1,48 @@
+{% extends 'base/base.html.twig' %}
+
+{% block body %}
+    <h1>Clubs</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Nombre</th>
+                <th>Teléfono</th>
+                <th>Jugadores</th>
+                <th>Acciones</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for club in clubs %}
+            <tr>
+                <td><a href="{{ path('club_show', { 'id': club.id }) }}">{{ club.id }}</a></td>
+                <td>{{ club.name }}</td>
+                <td>{{ club.phone }}</td>
+                <td>
+                    {% for player in club.players %}
+                        <p>{{ player.id}} - {{ player.name }}</p>
+                    {% endfor %}
+                </td>
+                <td>
+                    <a href="{{ path('club_show', { 'id': club.id }) }}" class="btn btn-xs btn-info" title="Ver detalle">
+                        <i class="fa fa-info-circle"></i>
+                    </a>
+                    <a href="{{ path('club_edit', { 'id': club.id }) }}" class="btn btn-xs btn-warning" title="Editar">
+                        <i class="fa fa-pencil"></i>
+                    </a>
+                    <a href="{{ path('club_delete', { 'id': club.id }) }}" class="btn btn-xs btn-danger" title="Eliminar">
+                        <i class="fa fa-times"></i>
+                    </a>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <div class="row">
+        <div class="col-xs-12">
+            <a href="{{ path('club_new') }}" class="btn btn-sm btn-success"><i class="fa fa-plus"></i> Añadir club</a>
+        </div>
+    </div>
+{% endblock %}

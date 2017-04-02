@@ -1,0 +1,6 @@
+clubs:
+    resource: '@AppBundle/Club/Controller/'
+    type: annotation
+players:
+    resource: '@AppBundle/Player/Controller/'
+    type: annotation

@@ -1,0 +1,50 @@
+{% extends 'base/base.html.twig' %}
+
+{% block body %}
+    <h1>Club edit</h1>
+
+    {% form_theme edit_form
+        '::jquery.collection.html.twig'
+        '::collection-form-custom-theme.html.twig'
+    %}
+    {{ form_start(edit_form) }}
+        {{ form_errors(edit_form) }}
+        <div class="form-group">
+            {{ form_row(edit_form.name) }}
+        </div>
+        <div class="form-group">
+            {{ form_row(edit_form.phone) }}
+        </div>
+        <div class="form-group">
+            {{ form_row(edit_form.players) }}
+        </div>
+        <div class="form-group">
+            <input type="submit" value="Crear" class="btn btn-sm btn-success"/>
+        </div>
+    {{ form_end(edit_form) }}
+
+    <ul>
+        <li>
+            <a href="{{ path('club_index') }}">Back to the list</a>
+        </li>
+        <li>
+            {{ form_start(delete_form) }}
+                <input type="submit" value="Delete">
+            {{ form_end(delete_form) }}
+        </li>
+    </ul>
+{% endblock %}
+
+{% block javascripts %}
+    {% javascripts '@AppBundle/Resources/public/js/jquery.collection.js' %}
+        <script src="{{ asset_url }}"></script>
+    {% endjavascripts %}
+
+    <script type="text/javascript">
+        $(document).ready(function(){
+            $('.player-collection').collection({
+                'add': '<a href="#" class="btn btn-sm btn-default">Añadir jugador</a>'
+            });
+        });
+    </script>
+{% endblock %}

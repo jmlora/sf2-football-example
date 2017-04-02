@@ -1,0 +1,24 @@
+{% extends 'base/base.html.twig' %}
+
+{% block body %}
+    <h1>Listado de jugadores</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Nombre</th>
+                <th>Club</th>
+                <th>Acciones</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for player in players %}
+            <tr>
+                <td><a href="{{ path('player_show', { 'id': player.id }) }}">{{ player.id }}</a></td>
+                <td>{{ player.name }}</td>
+                <td>{{ player.club.name }}</td>
+        {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}

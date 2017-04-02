@@ -1,0 +1,46 @@
+{% extends 'base/base.html.twig' %}
+
+{% block body %}
+    <h1>Club: {{ club.name }}</h1>
+
+    <div class="row">
+        <div class="col-xs-12 col-md-2 col-lg-1">
+            <strong>ID:</strong>
+        </div>
+        <div class="col-xs-12 col-md-2 col-lg-1">
+            {{ club.id }}
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-xs-12 col-md-2 col-lg-1">
+            <strong>Nombre:</strong>
+        </div>
+        <div class="col-xs-12 col-md-2 col-lg-1">
+            {{ club.name }}
+        </div>
+    </div>
+        <div class="row">
+        <div class="col-xs-12 col-md-2 col-lg-1">
+            <strong>Teléfono:</strong>
+        </div>
+        <div class="col-xs-12 col-md-2 col-lg-1">
+            {{ club.phone }}
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-xs-12">
+            <a href="{{ path('club_index') }}" class="btn btn-sm btn-primary"><i class="fa fa-reply"></i> Volver al listado</a>
+            <a href="{{ path('club_edit', { 'id': club.id }) }}" class="btn btn-sm btn-warning"><i class="fa fa-pencil"></i> Editar</a>
+        </div>
+    </div>
+        <li>
+            
+        </li>
+        <li>
+            {{ form_start(delete_form) }}
+                <input type="submit" value="Delete">
+            {{ form_end(delete_form) }}
+        </li>
+    </ul>
+{% endblock %}
